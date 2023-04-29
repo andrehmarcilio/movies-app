@@ -3,30 +3,26 @@ import 'package:flutter/material.dart';
 import 'app_colors.dart';
 
 abstract class AppTheme {
-  static ThemeData appTheme(BuildContext context) {
-    final currentBrightness = MediaQuery.of(context).platformBrightness;
-    if (currentBrightness == Brightness.dark) {
-      return _darkTheme;
-    }
-    return _lightTheme;
+  static ThemeData get appTheme {
+    return ThemeData(
+      colorScheme: ColorScheme.fromSeed(
+        primary: AppColors.purple,
+        seedColor: AppColors.purple,
+        secondary: AppColors.deepPurple,
+        background: AppColors.lightPurple,
+      ),
+    );
   }
 
-  static final _darkTheme = ThemeData(
-    colorScheme: ColorScheme.fromSeed(
-      seedColor: AppColors.purple,
-      primary: AppColors.purple,
-      secondary: AppColors.lightPurple,
-      background: AppColors.black,
-      brightness: Brightness.dark,
-    ),
-  );
-
-  static final _lightTheme = ThemeData(
-    colorScheme: ColorScheme.fromSeed(
-      seedColor: AppColors.purple,
-      primary: AppColors.purple,
-      secondary: AppColors.deepPurple,
-      background: AppColors.lightPurple,
-    ),
-  );
+  static ThemeData get darkTheme {
+    return ThemeData(
+      colorScheme: ColorScheme.fromSeed(
+        primary: AppColors.purple,
+        brightness: Brightness.dark,
+        seedColor: AppColors.purple,
+        background: AppColors.black,
+        secondary: AppColors.lightPurple,
+      ),
+    );
+  }
 }
