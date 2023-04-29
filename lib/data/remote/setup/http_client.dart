@@ -1,7 +1,7 @@
 import 'dart:async';
 
-import '../../../utils/either.dart';
-import '../../../utils/exceptions/api_exception.dart';
+import '../../../support/exceptions/api_exception.dart';
+import '../../../support/utils/either.dart';
 import 'end_point.dart';
 
 typedef ApiResult = FutureOr<Either<ApiException, dynamic>>;
