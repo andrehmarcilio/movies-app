@@ -68,41 +68,45 @@ class SplashView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: AnimatedBuilder(
-        builder: _buildAnimation,
-        animation: controller,
-      ),
-    );
-  }
-
-  Widget _buildAnimation(BuildContext context, Widget? child) {
-    return Stack(
-      children: [
-        Center(
-          child: LayoutBuilder(
-            builder: (context, constraints) {
-              return Container(
-                width: constraints.maxWidth * backgroundContainerSizeFactor.value,
-                height: constraints.maxHeight * backgroundContainerSizeFactor.value,
-                decoration: BoxDecoration(
-                  color: Theme.of(context).colorScheme.primary,
-                  borderRadius: BorderRadius.circular(40 * backgroundContainerSizeFactor.value),
-                ),
+      body: LayoutBuilder(
+        builder: (context, constraints) {
+          return AnimatedBuilder(
+            animation: controller,
+            builder: (context, _) {
+              return Stack(
+                children: [
+                  Center(
+                    child: Container(
+                      width: constraints.maxWidth * backgroundContainerSizeFactor.value,
+                      height: constraints.maxHeight * backgroundContainerSizeFactor.value,
+                      decoration: BoxDecoration(
+                        color: Theme.of(context).colorScheme.primary,
+                        borderRadius: BorderRadius.circular(40 * backgroundContainerSizeFactor.value),
+                      ),
+                    ),
+                  ),
+                  Align(
+                    alignment: logoPosition.value,
+                    child: Transform.rotate(
+                      angle: pi / logoRotation.value,
+                      child: Opacity(
+                        opacity: logoOpacity.value,
+                        child: ConstrainedBox(
+                          constraints: const BoxConstraints(maxWidth: 400),
+                          child: Image.asset(
+                            AppAssets.appLogo,
+                            width: constraints.maxWidth * 0.8,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
               );
             },
-          ),
-        ),
-        Align(
-          alignment: logoPosition.value,
-          child: Transform.rotate(
-            angle: pi / logoRotation.value,
-            child: Opacity(
-              opacity: logoOpacity.value,
-              child: Image.asset(AppAssets.appLogo),
-            ),
-          ),
-        ),
-      ],
+          );
+        },
+      ),
     );
   }
 }
