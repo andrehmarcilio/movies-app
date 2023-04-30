@@ -11,6 +11,7 @@ abstract class AppTheme {
         secondary: AppColors.deepPurple,
         background: AppColors.lightPurple,
       ),
+      scaffoldBackgroundColor: AppColors.lightPurple,
     );
   }
 
@@ -23,6 +24,7 @@ abstract class AppTheme {
         background: AppColors.black,
         secondary: AppColors.lightPurple,
       ),
+      scaffoldBackgroundColor: AppColors.black,
     );
   }
 }
