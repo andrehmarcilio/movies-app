@@ -44,6 +44,6 @@ class _SplashViewControllerState extends State<SplashViewController>
   }
 
   RootRouterDelegate get routerDelegate {
-    return Router.of(context).routerDelegate as RootRouterDelegate;
+    return RootRouterDelegate.of(context);
   }
 }
