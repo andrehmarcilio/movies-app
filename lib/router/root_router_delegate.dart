@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../features/splash/splash_view_controller.dart';
 import 'base_router_delegate.dart';
 import 'root_router_configuration.dart';
 
@@ -15,6 +16,10 @@ class RootRouterDelegate extends BaseRouterDelegate<RootRouterConfiguration> {
     return Navigator(
       key: navigatorKey,
       onPopPage: _handlePopPage,
+      pages: [
+        if (_routerConfiguration.isInitialLoading) const MaterialPage(child: SplashViewController()),
+        if (_routerConfiguration.appLoaded) MaterialPage(child: Scaffold(body: Container())),
+      ],
     );
   }
 
@@ -30,5 +35,10 @@ class RootRouterDelegate extends BaseRouterDelegate<RootRouterConfiguration> {
     final success = route.didPop(result);
 
     return success;
+  }
+
+  void finishInitialLoading() {
+    _routerConfiguration.finishLoading();
+    notifyListeners();
   }
 }
