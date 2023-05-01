@@ -6,23 +6,23 @@ abstract class AppTheme {
   static ThemeData get appTheme {
     return ThemeData(
       colorScheme: ColorScheme.fromSeed(
-        primary: AppColors.purple,
         seedColor: AppColors.purple,
+        primary: AppColors.deepPurple,
         secondary: AppColors.deepPurple,
-        background: AppColors.lightPurple,
+        background: AppColors.white,
       ),
-      scaffoldBackgroundColor: AppColors.lightPurple,
+      scaffoldBackgroundColor: AppColors.white,
     );
   }
 
   static ThemeData get darkTheme {
     return ThemeData(
       colorScheme: ColorScheme.fromSeed(
-        primary: AppColors.purple,
-        brightness: Brightness.dark,
         seedColor: AppColors.purple,
+        primary: AppColors.purple,
+        onPrimary: AppColors.white,
         background: AppColors.black,
-        secondary: AppColors.lightPurple,
+        brightness: Brightness.dark,
       ),
       scaffoldBackgroundColor: AppColors.black,
     );

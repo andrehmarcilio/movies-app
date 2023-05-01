@@ -15,6 +15,7 @@ dependencies:
   # UI
   google_fonts: ^4.0.4
   cupertino_icons: ^1.0.2
+  font_awesome_flutter: ^10.4.0
 
   # Utils
   get_it: ^7.3.0
