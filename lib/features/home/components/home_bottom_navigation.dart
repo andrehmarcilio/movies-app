@@ -60,7 +60,7 @@ class _BottomNavigationBarItem extends StatelessWidget {
             child: Icon(
               tab.icon,
               size: 24,
-              color: Theme.of(context).colorScheme.onPrimary.withOpacity(iconOpacity),
+              color: Theme.of(context).colorScheme.onBackground.withOpacity(iconOpacity),
             ),
           ),
           ClipRect(
