@@ -10,8 +10,13 @@ abstract class AppTheme {
         primary: AppColors.deepPurple,
         secondary: AppColors.deepPurple,
         background: AppColors.white,
+        onBackground: AppColors.black,
       ),
       scaffoldBackgroundColor: AppColors.white,
+      appBarTheme: const AppBarTheme(
+        backgroundColor: AppColors.black,
+        foregroundColor: AppColors.white,
+      ),
     );
   }
 
@@ -23,6 +28,7 @@ abstract class AppTheme {
         onPrimary: AppColors.white,
         background: AppColors.black,
         brightness: Brightness.dark,
+        onBackground: AppColors.white,
       ),
       scaffoldBackgroundColor: AppColors.black,
     );

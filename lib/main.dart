@@ -3,9 +3,13 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import 'router/root_router_delegate.dart';
 import 'support/extensions/context_extensions.dart';
+import 'support/injector/app_injector.dart';
 import 'support/style/app_theme.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  AppInjector.initializeDependencies();
   runApp(const MyApp());
 }
 

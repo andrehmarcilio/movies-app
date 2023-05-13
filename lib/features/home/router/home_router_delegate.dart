@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 
 import '../../../router/base_router_delegate.dart';
+import '../../../router/pages/fade_page.dart';
+import '../../dashboard/router/dashboard_router.dart';
+import '../../search/search_view.dart';
 import '../enums/home_bottom_tabs.dart';
 import 'home_router_configuration.dart';
 
@@ -11,13 +14,30 @@ class HomeRouterDelegate extends BaseRouterDelegate<HomeRouterConfiguration> {
 
   var _routerConfiguration = HomeRouterConfiguration();
 
+  final _dashBoardRouter = DashboardRouter();
+
   @override
   Widget build(BuildContext context) {
     return Navigator(
       key: navigatorKey,
       onPopPage: _handlePopPage,
       pages: [
-        _getCurrentPage(),
+        FadePage(
+          child: AnimatedBuilder(
+            animation: this,
+            builder: (context, child) {
+              return IndexedStack(
+                index: currentPage.index,
+                children: [
+                  _dashBoardRouter,
+                  const SearchView(),
+                  const SearchView(),
+                  const SearchView(),
+                ],
+              );
+            },
+          ),
+        ),
       ],
     );
   }
@@ -35,25 +55,6 @@ class HomeRouterDelegate extends BaseRouterDelegate<HomeRouterConfiguration> {
   void onTapBottomNavigationBarItem(HomeBottomTabs newTab) {
     _routerConfiguration.changeTab(newTab);
     notifyListeners();
-  }
-
-  Page _getCurrentPage() {
-    final Widget currentView;
-    switch (_routerConfiguration.currentTab) {
-      case HomeBottomTabs.dashboard:
-        currentView = Container(color: Colors.purpleAccent);
-        break;
-      case HomeBottomTabs.search:
-        currentView = Container(color: Colors.yellow);
-        break;
-      case HomeBottomTabs.favorites:
-        currentView = Container(color: Colors.blue);
-        break;
-      case HomeBottomTabs.profile:
-        currentView = Container(color: Colors.red);
-    }
-
-    return MaterialPage(child: currentView);
   }
 
   bool _handlePopPage(Route<dynamic> route, dynamic result) {

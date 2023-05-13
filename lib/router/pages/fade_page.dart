@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class FadePage extends Page {
   final Widget child;
 
-  const FadePage({required this.child, super.key});
+  const FadePage({required this.child, super.key, super.name});
 
   @override
   Route createRoute(BuildContext context) {
