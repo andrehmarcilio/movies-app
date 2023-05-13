@@ -1,0 +1,3 @@
+class DashboardRouterConfiguration {
+  int? selectedMovieId;
+}
