@@ -1,7 +1,7 @@
 import 'dart:async';
 
-import '../../../utils/either.dart';
-import '../../../utils/exceptions/local_database_exception.dart';
+import '../../../support/exceptions/local_database_exception.dart';
+import '../../../support/utils/either.dart';
 import 'sql.dart';
 
 typedef DatabaseResponse<T> = FutureOr<Either<LocalDatabaseException, T>>;

@@ -1,8 +1,10 @@
+import '../enums/http_method.dart';
 import 'api_host.dart';
 
 class Endpoint {
   final String path;
   final dynamic data;
+  final HttpMethod method;
   final String? contentType;
   final Map<String, String> _queryParameters = ApiHost.defaultQueryParams;
 
@@ -16,6 +18,7 @@ class Endpoint {
 
   Endpoint({
     required this.path,
+    required this.method,
     this.data,
     this.contentType,
     Map<String, String>? queryParameters,

@@ -1,6 +1,21 @@
 {
     "@@locale" : "pt",
     
-    "appTitle": "Movies"
+    "appTitle": "Movies",
 
+    "bottomNavigationBarHomeLabel": "home",
+    "bottomNavigationBarSearchLabel": "buscar",
+    "bottomNavigationBarFavoritesLabel": "favoritos",
+    "bottomNavigationBarProfileLabel": "perfil",
+
+    "upcomingMoviesSectionTitle": "Em breve",
+    "nowPlayingMoviesSectionTitle": "Lançamentos",
+    "topRatedMoviesSectionTitle": "Melhores avaliados",
+    "popularMoviesSectionTitle": "Populares",
+
+    "errorMessageGeneric": "Oops! Algo deu errado. Tente novamente mais tarde.",
+    "errorMessageUnauthorized": "Você não tem autorização para acessar este recurso.",
+    "errorMessageNotFound": "Desculpe, não conseguimos encontrar o recurso solicitado.",
+    "errorMessageClientError": "Oops! Algo deu errado com sua solicitação. Verifique seus dados e tente novamente.",
+    "errorMessageServerError": "Oops! Algo deu errado com o servidor. Tente novamente mais tarde."
 }

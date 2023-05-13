@@ -14,11 +14,11 @@ abstract class Either<L, R> {
     return (this as Failure<L, R>)._failure;
   }
 
-  FutureOr<void> fold({FutureOr<void> Function(L)? failure, FutureOr<void> Function(R)? success}) {
+  FutureOr<void> fold({FutureOr<void> Function(L)? failure, FutureOr<void> Function(R)? success}) async {
     if (isSuccess) {
-      success?.call(successData);
+      await success?.call(successData);
     } else {
-      failure?.call(failureData);
+      await failure?.call(failureData);
     }
   }
 }
