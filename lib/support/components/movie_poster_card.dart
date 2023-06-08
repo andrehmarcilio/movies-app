@@ -17,7 +17,7 @@ class MoviePosterCard extends StatelessWidget {
         child: ClipRRect(
           borderRadius: BorderRadius.circular(12),
           child: Image.network(
-            MovieDbImagePath.getImageUrl(path: movie.posterPath),
+            MovieDbImagePath.getImageUrl(path: movie.posterPath ?? ''),
             fit: BoxFit.cover,
           ),
         ),
