@@ -1,5 +1,5 @@
 import '../../../../models/movie.dart';
-import '../../../../support/exceptions/api_exception.dart';
+import '../../../../support/exceptions/base_exception.dart';
 
 sealed class MoviesHorizontalListState {}
 
@@ -14,7 +14,7 @@ class MoviesSuccess extends MoviesHorizontalListState {
 }
 
 class MoviesError extends MoviesHorizontalListState {
-  ApiException apiError;
+  BaseException error;
 
-  MoviesError(this.apiError);
+  MoviesError(this.error);
 }
