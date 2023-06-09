@@ -7,11 +7,11 @@ class Movie {
   num popularity;
   num voteAverage;
   String overview;
-  String posterPath;
+  String? posterPath;
   List<int> genreIds;
-  String backdropPath;
+  String? backdropPath;
   String originalTitle;
-  DateTime releaseDate;
+  DateTime? releaseDate;
   String originalLanguage;
 
   Movie({
@@ -45,7 +45,7 @@ class Movie {
         originalTitle = json['original_title'],
         originalLanguage = json['original_language'],
         genreIds = List<int>.from(json['genre_ids']),
-        releaseDate = DateTime.parse(json['release_date']);
+        releaseDate = DateTime.tryParse(json['release_date'] ?? '');
 
   static List<Movie> fromList(List list) {
     return list.map(Movie.fromJson).toList();

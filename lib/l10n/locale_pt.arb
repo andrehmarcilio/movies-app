@@ -13,6 +13,9 @@
     "topRatedMoviesSectionTitle": "Melhores avaliados",
     "popularMoviesSectionTitle": "Populares",
 
+    "searchMoviesInitialPhraseLabel": "Encontre filmes incríveis! Faça uma pesquisa e divirta-se!",
+    "searchMoviesEmptyPhraseLabel": "Nenhum filme encontrado. Experimente novos termos ou explore outras opções disponíveis.",
+
     "errorMessageGeneric": "Oops! Algo deu errado. Tente novamente mais tarde.",
     "errorMessageUnauthorized": "Você não tem autorização para acessar este recurso.",
     "errorMessageNotFound": "Desculpe, não conseguimos encontrar o recurso solicitado.",

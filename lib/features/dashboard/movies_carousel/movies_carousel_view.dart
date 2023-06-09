@@ -5,8 +5,8 @@ import '../../../support/components/movie_carousel_card.dart';
 import '../../../support/enums/movie_category.dart';
 import '../../../support/extensions/context_extensions.dart';
 import '../../../support/injector/app_injector.dart';
-import 'cubit/movies_carousel_cubit.dart';
-import 'cubit/movies_carousel_state.dart';
+import 'state/movies_carousel_state.dart';
+import 'state/movies_carousel_view_model.dart';
 
 class MoviesCarouselView extends StatefulWidget {
   final MovieCategory movieCategory;
@@ -18,12 +18,18 @@ class MoviesCarouselView extends StatefulWidget {
 }
 
 class _MoviesCarouselViewState extends State<MoviesCarouselView> with AutomaticKeepAliveClientMixin {
-  final cubit = AppInjector.get<MoviesCarouselCubit>();
+  final viewModel = AppInjector.get<MoviesCarouselViewModel>();
 
   @override
   void initState() {
     super.initState();
-    cubit.getMovies(movieCategory: widget.movieCategory);
+    viewModel.getMovies(movieCategory: widget.movieCategory);
+  }
+
+  @override
+  void dispose() {
+    viewModel.dispose();
+    super.dispose();
   }
 
   @override
@@ -44,7 +50,7 @@ class _MoviesCarouselViewState extends State<MoviesCarouselView> with AutomaticK
         SizedBox(
           height: 240,
           child: ValueListenableBuilder(
-            valueListenable: cubit,
+            valueListenable: viewModel,
             builder: _getMoviesCarouselByState,
           ),
         ),
@@ -55,8 +61,8 @@ class _MoviesCarouselViewState extends State<MoviesCarouselView> with AutomaticK
   Widget _getMoviesCarouselByState(BuildContext context, MoviesCarouselState state, Widget? child) {
     return switch (state) {
       MoviesCarouselInitialState() || MoviesCarouselLoading() => const Center(child: CircularProgressIndicator()),
-      MoviesCarouselError() => Text(state.apiError.getErrorMessage(context.l10n)),
-      MoviesCarouselSuccess() => _MoviesCarousel(movies: state.movies),
+      MoviesCarouselError(error: final apiError) => Text(apiError.getErrorMessage(context.l10n)),
+      MoviesCarouselSuccess(:final movies) => _MoviesCarousel(movies: movies),
     };
   }
 

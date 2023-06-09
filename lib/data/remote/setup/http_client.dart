@@ -31,7 +31,7 @@ class DioClient extends HttpClient {
         contentType: endpoint.contentType ?? ContentType.json.value,
       );
 
-      final response = await _dio.get(
+      final response = await _dio.request(
         endpoint.path,
         data: endpoint.data,
         options: requestOptions,

@@ -5,8 +5,8 @@ import '../../../support/components/movie_poster_card.dart';
 import '../../../support/enums/movie_category.dart';
 import '../../../support/extensions/context_extensions.dart';
 import '../../../support/injector/app_injector.dart';
-import 'cubit/movies_horizontal_list_cubit.dart';
-import 'cubit/movies_horizontal_list_state.dart';
+import 'state/movies_horizontal_list_state.dart';
+import 'state/movies_horizontal_list_view_model.dart';
 
 class MoviesHorizontalListView extends StatefulWidget {
   final MovieCategory movieCategory;
@@ -18,12 +18,18 @@ class MoviesHorizontalListView extends StatefulWidget {
 }
 
 class _MoviesHorizontalListViewState extends State<MoviesHorizontalListView> with AutomaticKeepAliveClientMixin {
-  final cubit = AppInjector.get<MoviesHorizontalListCubit>();
+  final viewModel = AppInjector.get<MoviesHorizontalListViewModel>();
 
   @override
   void initState() {
     super.initState();
-    cubit.getMovies(movieCategory: widget.movieCategory);
+    viewModel.getMovies(movieCategory: widget.movieCategory);
+  }
+
+  @override
+  void dispose() {
+    viewModel.dispose();
+    super.dispose();
   }
 
   @override
@@ -44,7 +50,7 @@ class _MoviesHorizontalListViewState extends State<MoviesHorizontalListView> wit
         SizedBox(
           height: 232,
           child: ValueListenableBuilder(
-            valueListenable: cubit,
+            valueListenable: viewModel,
             builder: _getMoviesListByState,
           ),
         ),
@@ -55,8 +61,8 @@ class _MoviesHorizontalListViewState extends State<MoviesHorizontalListView> wit
   Widget _getMoviesListByState(BuildContext context, MoviesHorizontalListState state, Widget? child) {
     return switch (state) {
       MoviesInitialState() || MoviesLoading() => const Center(child: CircularProgressIndicator()),
-      MoviesError() => Text(state.apiError.getErrorMessage(context.l10n)),
-      MoviesSuccess() => _MoviesHorizontalList(movies: state.movies),
+      MoviesError(error: final apiError) => Text(apiError.getErrorMessage(context.l10n)),
+      MoviesSuccess(:final movies) => _MoviesHorizontalList(movies: movies),
     };
   }
 

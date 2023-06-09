@@ -14,7 +14,7 @@ class MoviesCarouselSuccess extends MoviesCarouselState {
 }
 
 class MoviesCarouselError extends MoviesCarouselState {
-  BaseException apiError;
+  BaseException error;
 
-  MoviesCarouselError(this.apiError);
+  MoviesCarouselError(this.error);
 }

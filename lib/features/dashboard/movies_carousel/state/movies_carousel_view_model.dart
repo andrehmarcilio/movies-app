@@ -4,10 +4,10 @@ import '../../../../support/enums/movie_category.dart';
 import '../../use_cases/get_movies_use_case.dart';
 import 'movies_carousel_state.dart';
 
-class MoviesCarouselCubit extends ValueNotifier<MoviesCarouselState> {
+class MoviesCarouselViewModel extends ValueNotifier<MoviesCarouselState> {
   final GetMoviesUseCase getMoviesUseCase;
 
-  MoviesCarouselCubit({required this.getMoviesUseCase}) : super(MoviesCarouselInitialState());
+  MoviesCarouselViewModel({required this.getMoviesUseCase}) : super(MoviesCarouselInitialState());
 
   Future<void> getMovies({required MovieCategory movieCategory}) async {
     value = MoviesCarouselLoading();
