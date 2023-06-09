@@ -14,7 +14,11 @@ class SearchMoviesViewModel extends ValueNotifier<SearchMoviesState> {
     final moviesResult = await searchMoviesUseCase(query: query);
     moviesResult.fold(
       success: (movies) {
-        value = SearchMoviesSuccess(movies);
+        if (movies.isEmpty) {
+          value = SearchMoviesEmpty();
+        } else {
+          value = SearchMoviesSuccess(movies);
+        }
       },
       failure: (error) {
         value = SearchMoviesError(error);
